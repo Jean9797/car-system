@@ -12,7 +12,7 @@ public class Car {
     }
 
     public String toString(){
-        return this.currentPosition.toString() + " => " + this.currentDirection;
+        return this.currentPosition.toString() + " => " + this.currentDirection.toString();
     }
 
     public void move(MoveDirection direction){
@@ -50,22 +50,22 @@ public class Car {
             case Backward:
                 switch(this.currentDirection){
                     case North:
-                        if(this.currentPosition.add(new Position(0, -1)).smaller(this.rightUpMapCorner)){
+                        if(this.currentPosition.add(new Position(0, -1)).larger(this.leftDownMapCorner)){
                             this.currentPosition = this.currentPosition.add(new Position(0,-1));
                         }
                         break;
                     case East:
-                        if(this.currentPosition.add(new Position(-1, 0)).smaller(this.rightUpMapCorner)){
+                        if(this.currentPosition.add(new Position(-1, 0)).larger(this.leftDownMapCorner)){
                             this.currentPosition = this.currentPosition.add(new Position(-1,0));
                         }
                         break;
                     case West:
-                        if(this.currentPosition.add(new Position(1, 0)).larger(this.leftDownMapCorner)){
+                        if(this.currentPosition.add(new Position(1, 0)).smaller(this.rightUpMapCorner)){
                             this.currentPosition = this.currentPosition.add(new Position(1,0));
                         }
                         break;
                     case South:
-                        if(this.currentPosition.add(new Position(0, 1)).larger(this.leftDownMapCorner)){
+                        if(this.currentPosition.add(new Position(0, 1)).smaller(this.rightUpMapCorner)){
                             this.currentPosition = this.currentPosition.add(new Position(0,1));
                         }
                         break;

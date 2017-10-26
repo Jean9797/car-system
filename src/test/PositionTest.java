@@ -4,10 +4,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PositionTest {
+
+    @Test
+    public void equals() throws Exception {
+        Position coords = new Position(1,1);
+        assertTrue(coords.equals(new Position(1,1)));
+        assertFalse(coords.equals(new Position(1,2)));
+    }
+
     @Test
     public void testToString() throws Exception {
         Position coords = new Position(1,1);
-        Assert.assertEquals("(1,1)", coords.toString());
+        assertEquals("(1,1)", coords.toString());
     }
 
     @Test
@@ -39,6 +47,8 @@ public class PositionTest {
         Position coords = new Position(1,1);
         assertEquals("(2,3)", coords.add(new Position(1,2)).toString());
     }
+
+
 
 
 }
