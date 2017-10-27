@@ -16,6 +16,7 @@ public class Car {
     }
 
     public void move(MoveDirection direction){
+        Position moveOnPosition = this.currentPosition;
         switch (direction){
             case Left:
                 this.currentDirection = this.currentDirection.previous();
@@ -27,49 +28,39 @@ public class Car {
                 Position lcd = this.currentPosition;
                 switch(this.currentDirection){
                     case North:
-                        if(this.currentPosition.add(new Position(0, 1)).smaller(this.rightUpMapCorner)){
-                            this.currentPosition = this.currentPosition.add(new Position(0,1));
-                        }
+                        moveOnPosition = this.currentPosition.add(new Position(0, 1));
                         break;
                     case East:
-                        if(this.currentPosition.add(new Position(1, 0)).smaller(this.rightUpMapCorner)){
-                            this.currentPosition = this.currentPosition.add(new Position(1,0));
-                        }
+                        moveOnPosition = this.currentPosition.add(new Position(1, 0));
                         break;
                     case West:
-                        if(this.currentPosition.add(new Position(-1, 0)).larger(this.leftDownMapCorner)){
-                            this.currentPosition = this.currentPosition.add(new Position(-1,0));
-                        }
+                        moveOnPosition = this.currentPosition.add(new Position(-1, 0));
                         break;
                     case South:
-                        if(this.currentPosition.add(new Position(0, -1)).larger(this.leftDownMapCorner)){
-                            this.currentPosition = this.currentPosition.add(new Position(0,-1));
-                        }
+                        moveOnPosition = this.currentPosition.add(new Position(0, -1));
                         break;
+                }
+                if(moveOnPosition.smaller(rightUpMapCorner) && moveOnPosition.larger(leftDownMapCorner)){
+                    this.currentPosition = moveOnPosition;
                 }
                 break;
             case Backward:
                 switch(this.currentDirection){
                     case North:
-                        if(this.currentPosition.add(new Position(0, -1)).larger(this.leftDownMapCorner)){
-                            this.currentPosition = this.currentPosition.add(new Position(0,-1));
-                        }
+                        moveOnPosition = this.currentPosition.add(new Position(0, -1));
                         break;
                     case East:
-                        if(this.currentPosition.add(new Position(-1, 0)).larger(this.leftDownMapCorner)){
-                            this.currentPosition = this.currentPosition.add(new Position(-1,0));
-                        }
+                        moveOnPosition = this.currentPosition.add(new Position(-1, 0));
                         break;
                     case West:
-                        if(this.currentPosition.add(new Position(1, 0)).smaller(this.rightUpMapCorner)){
-                            this.currentPosition = this.currentPosition.add(new Position(1,0));
-                        }
+                        moveOnPosition = this.currentPosition.add(new Position(1, 0));
                         break;
                     case South:
-                        if(this.currentPosition.add(new Position(0, 1)).smaller(this.rightUpMapCorner)){
-                            this.currentPosition = this.currentPosition.add(new Position(0,1));
-                        }
+                        moveOnPosition = this.currentPosition.add(new Position(0, 1));
                         break;
+                }
+                if(moveOnPosition.smaller(rightUpMapCorner) && moveOnPosition.larger(leftDownMapCorner)){
+                    this.currentPosition = moveOnPosition;
                 }
                 break;
         }
