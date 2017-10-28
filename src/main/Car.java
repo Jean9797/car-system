@@ -40,6 +40,7 @@ public class Car {
                 this.currentDirection = this.currentDirection.next();
                 break;
             case Forward:
+                Position lcd = this.currentPosition;
                 switch(this.currentDirection){
                     case North:
                         moveOnPosition = this.currentPosition.add(new Position(0, 1));
