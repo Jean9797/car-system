@@ -3,7 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CarTest {
-    @Test
+    /*@Test
     public void testToString() throws Exception {
         Car testCar = new Car();
         assertEquals("(2,2) => Północ", testCar.toString());
@@ -32,6 +32,6 @@ public class CarTest {
         assertEquals("(4,4) => Północ", testCar.toString());
         testCar.move(MoveDirection.Forward);
         assertEquals("(4,4) => Północ", testCar.toString());
-    }
+    }*/
 
 }

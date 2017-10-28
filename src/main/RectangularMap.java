@@ -10,12 +10,13 @@ public class RectangularMap implements IWorldMap{
         this.leftDownMapCorner = new Position(0,0);
         this.rightUpMapCorner = new Position(width, height);
         visual = new MapVisualizer();
+        cars = new ArrayList<Car>();
     }
 
 
     @Override
     public boolean canMoveTo(Position position) {
-        return false;
+        return position.smaller(rightUpMapCorner) && position.larger(leftDownMapCorner) && !isOccupied(position);
     }
 
     @Override
@@ -30,11 +31,14 @@ public class RectangularMap implements IWorldMap{
 
     @Override
     public boolean isOccupied(Position position) {
-        return false;
+        return objectAt(position) != null;
     }
 
     @Override
     public Object objectAt(Position position) {
+        for(Car vehicle : cars ){
+            if(vehicle.getCurrentPosition().equals(position)) return vehicle;
+        }
         return null;
     }
 
