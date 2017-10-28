@@ -21,12 +21,17 @@ public class RectangularMap implements IWorldMap{
 
     @Override
     public boolean add(Car car) {
-        return false;
+        if(isOccupied(car.getPosition())) return false;
+        cars.add(car);
+        return true;
     }
 
     @Override
     public void run(MoveDirection[] directions) {
-
+        if(cars.size() == 0) return;
+        for(int i = 0; i < directions.length; i++){
+            cars.get(i%cars.size()).move(directions[i]);        //iterujemy po tablicy directions oraz jednocześnie po tablicy cars
+        }
     }
 
     @Override
@@ -37,7 +42,7 @@ public class RectangularMap implements IWorldMap{
     @Override
     public Object objectAt(Position position) {
         for(Car vehicle : cars ){
-            if(vehicle.getCurrentPosition().equals(position)) return vehicle;
+            if(vehicle.getPosition().equals(position)) return vehicle;
         }
         return null;
     }

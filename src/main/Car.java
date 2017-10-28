@@ -2,8 +2,6 @@ public class Car {
     private IWorldMap map;
     private MapDirection currentDirection;
     private Position currentPosition;
-    private Position leftDownMapCorner = new Position(0,0);
-    private Position rightUpMapCorner = new Position(4,4);
 
 
     public Car(IWorldMap map){
@@ -17,6 +15,7 @@ public class Car {
         this.map = map;
     }
 
+    @Override
     public String toString(){
         switch (this.currentDirection){
             case North: return "N";
@@ -26,7 +25,7 @@ public class Car {
         }
     }
 
-    public Position getCurrentPosition() {
+    public Position getPosition() {
         return currentPosition;
     }
 
