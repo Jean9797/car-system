@@ -2,12 +2,11 @@
 public class CarSystem {
 
     public static void main(String[] args){
-        /*Car ford = new Car();
-        System.out.println(ford.toString());
-        MoveDirection[] orders = OptionsParser.parse(args);
-        for(MoveDirection i : orders){
-            ford.move(i);
-            System.out.println(ford.toString());
-        }*/
+        MoveDirection[] directions = OptionsParser.parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        map.add(new Car(map));
+        map.add(new Car(map,3,4));
+        map.run(directions);
+        System.out.print(map.toString());
     }
 }

@@ -7,12 +7,13 @@ public class Car {
     public Car(IWorldMap map){
         this.currentDirection = MapDirection.North;
         this.map = map;
+        this.currentPosition = new Position(0,0);
     }
 
     public Car(IWorldMap map, int x, int y){
         this.currentDirection = MapDirection.North;
-        this.currentPosition = new Position(x, y);
         this.map = map;
+        this.currentPosition = new Position(x, y);
     }
 
     @Override

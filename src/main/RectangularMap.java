@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class RectangularMap implements IWorldMap{
-    private MapVisualizer visual;
+    private MapVisualizer visualising;
     private ArrayList<Car> cars;
     private Position leftDownMapCorner;
     private Position rightUpMapCorner;
@@ -9,8 +9,8 @@ public class RectangularMap implements IWorldMap{
     public RectangularMap(int width, int height){
         this.leftDownMapCorner = new Position(0,0);
         this.rightUpMapCorner = new Position(width, height);
-        visual = new MapVisualizer();
-        cars = new ArrayList<Car>();
+        visualising = new MapVisualizer();
+        cars = new ArrayList<>();
     }
 
 
@@ -21,9 +21,12 @@ public class RectangularMap implements IWorldMap{
 
     @Override
     public boolean add(Car car) {
-        if(isOccupied(car.getPosition())) return false;
-        cars.add(car);
-        return true;
+        Position carPosition = car.getPosition();
+        if(!isOccupied(carPosition) && carPosition.larger(leftDownMapCorner) && carPosition.smaller(rightUpMapCorner)) {
+            cars.add(car);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -42,13 +45,14 @@ public class RectangularMap implements IWorldMap{
     @Override
     public Object objectAt(Position position) {
         for(Car vehicle : cars ){
-            if(vehicle.getPosition().equals(position)) return vehicle;
+            Position currentPosition = vehicle.getPosition();
+            if(currentPosition.equals(position) && currentPosition.larger(leftDownMapCorner) && currentPosition.smaller(rightUpMapCorner)) return vehicle;
         }
         return null;
     }
 
     @Override
     public String toString(){
-        return visual.dump(this, this.leftDownMapCorner, this.rightUpMapCorner);
+        return visualising.dump(this, this.leftDownMapCorner, this.rightUpMapCorner);
     }
 }
