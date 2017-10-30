@@ -47,6 +47,20 @@ public class IWorldMapTest {
 
     @Test
     public void run() throws Exception {
+        IWorldMap map = new RectangularMap(4,4);
+        Car[] cars = new Car[5];
+        for(int i = 0; i < 5; i++){
+            cars[i] = new Car(map,i,0);
+            map.add(cars[i]);
+        }
+        MoveDirection[] directions = {MoveDirection.Forward, MoveDirection.Forward, MoveDirection.Forward, MoveDirection.Forward, MoveDirection.Forward,
+                MoveDirection.Forward, MoveDirection.Forward, MoveDirection.Forward, MoveDirection.Forward, MoveDirection.Right,
+                MoveDirection.Right, MoveDirection.Right, MoveDirection.Right, MoveDirection.Right, MoveDirection.Right, MoveDirection.Backward};
 
+        map.run(directions);
+        for(int i = 0; i < 4; i++){
+            assertTrue(map.isOccupied(new Position(i,2)));
+        }
+        assertTrue(map.isOccupied(new Position(4,1)));
     }
 }
