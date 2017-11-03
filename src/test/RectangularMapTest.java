@@ -2,7 +2,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class IWorldMapTest {
+public class RectangularMapTest {
     @Test
     public void objectAt() throws Exception {
         IWorldMap map = new RectangularMap(4,4);
