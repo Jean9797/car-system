@@ -31,6 +31,7 @@ public class OptionsParser {
                     orders.add(MoveDirection.Left);
                     break;
                 default:
+                    throw new IllegalArgumentException(i + " is not legal move specification");
             }
         }
         MoveDirection[] result = new MoveDirection[orders.size()];

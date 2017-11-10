@@ -1,13 +1,11 @@
 import java.util.ArrayList;
 
-public class UnboundedMap implements IWorldMap {
-    private MapVisualizer visualize;
-    private ArrayList<Car> cars = new ArrayList<>();
+public class UnboundedMap extends AbstractWorldMap implements IWorldMap {
     private ArrayList<HayStack> stacks;
 
     public UnboundedMap(ArrayList<HayStack> stacks){
+        super();
         this.stacks = stacks;
-        this.visualize = new MapVisualizer();
     }
 
     @Override
@@ -21,15 +19,7 @@ public class UnboundedMap implements IWorldMap {
             cars.add(car);
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public void run(MoveDirection[] directions) {
-        if(cars.size() == 0) return;
-        for(int i = 0; i < directions.length; i++){
-            cars.get(i%cars.size()).move(directions[i]);
-        }
+        throw new IllegalArgumentException(car.getPosition().toString() + " is already busy");
     }
 
     @Override
@@ -68,6 +58,6 @@ public class UnboundedMap implements IWorldMap {
             if (currentPosition.x < leftDownX) leftDownX = currentPosition.x;
             if (currentPosition.y < leftDownY) leftDownY = currentPosition.y;
         }
-        return this.visualize.dump(this, new Position(leftDownX,leftDownY), new Position(rightUpX, rightUpY));
+        return this.visualise.dump(this, new Position(leftDownX,leftDownY), new Position(rightUpX, rightUpY));
     }
 }
