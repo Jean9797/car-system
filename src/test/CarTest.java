@@ -11,13 +11,13 @@ public class CarTest {
     @Test
     public void testToString() throws Exception {
         Car testCar = new Car(new RectangularMap(4,4));
-        assertEquals("N", testCar.toString());
+        assertEquals("^", testCar.toString());
         testCar.move(MoveDirection.Right);
-        assertEquals("E", testCar.toString());
+        assertEquals(">", testCar.toString());
         testCar.move(MoveDirection.Right);
-        assertEquals("S", testCar.toString());
+        assertEquals("v", testCar.toString());
         testCar.move(MoveDirection.Right);
-        assertEquals("W", testCar.toString());
+        assertEquals("<", testCar.toString());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class CarTest {
 
 
         testCar.move(MoveDirection.Left);
-        assertEquals("W", testCar.toString());
+        assertEquals("<", testCar.toString());
         testCar.move(MoveDirection.Backward);
         testCar.move(MoveDirection.Backward);
         assertEquals(new Position(4,4), testCar.getPosition());
@@ -40,7 +40,7 @@ public class CarTest {
         assertEquals(new Position(4,4), testCar.getPosition());
 
         testCar.move(MoveDirection.Right);
-        assertEquals("N", testCar.toString());
+        assertEquals("^", testCar.toString());
         testCar.move(MoveDirection.Forward);
         assertEquals(new Position(4,4), testCar.getPosition());
     }

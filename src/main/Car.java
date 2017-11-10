@@ -7,7 +7,7 @@ public class Car {
     public Car(IWorldMap map){
         this.currentDirection = MapDirection.North;
         this.map = map;
-        this.currentPosition = new Position(0,0);
+        this.currentPosition = new Position(2,2);
     }
 
     public Car(IWorldMap map, int x, int y){
@@ -19,10 +19,10 @@ public class Car {
     @Override
     public String toString(){
         switch (this.currentDirection){
-            case North: return "N";
-            case South: return "S";
-            case East: return "E";
-            default: return "W";
+            case North: return "^";
+            case South: return "v";
+            case East: return ">";
+            default: return "<";
         }
     }
 

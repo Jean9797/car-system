@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class RectangularMap implements IWorldMap{
     private MapVisualizer visualising;
-    private ArrayList<Car> cars;
+    private ArrayList<Car> cars = new ArrayList<>();
     private Position leftDownMapCorner;
     private Position rightUpMapCorner;
 
@@ -10,7 +10,6 @@ public class RectangularMap implements IWorldMap{
         this.leftDownMapCorner = new Position(0,0);
         this.rightUpMapCorner = new Position(width, height);
         visualising = new MapVisualizer();
-        cars = new ArrayList<>();
     }
 
 
