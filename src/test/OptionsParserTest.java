@@ -8,7 +8,7 @@ public class OptionsParserTest {
         MoveDirection[] properResult = {MoveDirection.Forward, MoveDirection.Forward, MoveDirection.Backward, MoveDirection.Backward,
                 MoveDirection.Left, MoveDirection.Left, MoveDirection.Right, MoveDirection.Right};
 
-        String[] input = {"f", "asfq", "forward", "backward", "vvvv", "b", "left", "g", "l", "r", "right"};
+        String[] input = {"f", "forward", "backward", "b", "left", "l", "r", "right"};
 
         assertEquals(properResult, OptionsParser.parse(input));
 

@@ -14,20 +14,6 @@ public class UnboundedMap extends AbstractWorldMap implements IWorldMap {
     }
 
     @Override
-    public boolean add(Car car) {
-        if(!isOccupied(car.getPosition())){
-            cars.add(car);
-            return true;
-        }
-        throw new IllegalArgumentException(car.getPosition().toString() + " is already busy");
-    }
-
-    @Override
-    public boolean isOccupied(Position position) {
-        return objectAt(position) != null;
-    }
-
-    @Override
     public Object objectAt(Position position) {
         for(Car vehicle : cars){
             if(position.equals(vehicle.getPosition())) return vehicle;
