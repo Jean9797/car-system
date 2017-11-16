@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class OptionsParser {
 
-    public static MoveDirection[] parse(String[] input){
+    public static MoveDirection[] parse(String[] input) {
         ArrayList<MoveDirection> orders = new ArrayList<>();
         for(String i : input){
             switch (i){
@@ -31,6 +31,7 @@ public class OptionsParser {
                     orders.add(MoveDirection.Left);
                     break;
                 default:
+                    throw new IllegalArgumentException(i + " is not legal move specification");
             }
         }
         MoveDirection[] result = new MoveDirection[orders.size()];

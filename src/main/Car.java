@@ -1,18 +1,33 @@
 public class Car {
-
+    private IWorldMap map;
     private MapDirection currentDirection;
     private Position currentPosition;
-    private Position leftDownMapCorner = new Position(0,0);
-    private Position rightUpMapCorner = new Position(4,4);
 
 
-    public Car(){
+    public Car(IWorldMap map){
         this.currentDirection = MapDirection.North;
-        this.currentPosition = new Position(2, 2);
+        this.map = map;
+        this.currentPosition = new Position(2,2);
     }
 
+    public Car(IWorldMap map, int x, int y){
+        this.currentDirection = MapDirection.North;
+        this.map = map;
+        this.currentPosition = new Position(x, y);
+    }
+
+    @Override
     public String toString(){
-        return this.currentPosition.toString() + " => " + this.currentDirection.toString();
+        switch (this.currentDirection){
+            case North: return "^";
+            case South: return "v";
+            case East: return ">";
+            default: return "<";
+        }
+    }
+
+    public Position getPosition() {
+        return currentPosition;
     }
 
     public void move(MoveDirection direction){
@@ -25,7 +40,6 @@ public class Car {
                 this.currentDirection = this.currentDirection.next();
                 break;
             case Forward:
-                Position lcd = this.currentPosition;
                 switch(this.currentDirection){
                     case North:
                         moveOnPosition = this.currentPosition.add(new Position(0, 1));
@@ -40,7 +54,7 @@ public class Car {
                         moveOnPosition = this.currentPosition.add(new Position(0, -1));
                         break;
                 }
-                if(moveOnPosition.smaller(rightUpMapCorner) && moveOnPosition.larger(leftDownMapCorner)){
+                if(map.canMoveTo(moveOnPosition)){
                     this.currentPosition = moveOnPosition;
                 }
                 break;
@@ -59,7 +73,7 @@ public class Car {
                         moveOnPosition = this.currentPosition.add(new Position(0, 1));
                         break;
                 }
-                if(moveOnPosition.smaller(rightUpMapCorner) && moveOnPosition.larger(leftDownMapCorner)){
+                if(map.canMoveTo(moveOnPosition)){
                     this.currentPosition = moveOnPosition;
                 }
                 break;

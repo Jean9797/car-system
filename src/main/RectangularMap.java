@@ -1,47 +1,29 @@
-import java.util.ArrayList;
-
-public class RectangularMap implements IWorldMap{
-    private MapVisualizer visual;
-    private ArrayList<Car> cars;
+public class RectangularMap extends AbstractWorldMap implements IWorldMap{
     private Position leftDownMapCorner;
     private Position rightUpMapCorner;
 
     public RectangularMap(int width, int height){
+        super();
         this.leftDownMapCorner = new Position(0,0);
         this.rightUpMapCorner = new Position(width, height);
-        visual = new MapVisualizer();
     }
-
 
     @Override
     public boolean canMoveTo(Position position) {
-        return false;
-    }
-
-    @Override
-    public boolean add(Car car) {
-        return false;
-    }
-
-    @Override
-    public void run(MoveDirection[] directions) {
-        for(int i = 0; i < directions.length; i++){
-            cars.get(i%cars.size()).move(directions[i]);
-        }
-    }
-
-    @Override
-    public boolean isOccupied(Position position) {
-        return true;
+        return position.smaller(rightUpMapCorner) && position.larger(leftDownMapCorner) && !isOccupied(position);
     }
 
     @Override
     public Object objectAt(Position position) {
+        for(Car vehicle : cars ){
+            Position currentPosition = vehicle.getPosition();
+            if(currentPosition.equals(position) && currentPosition.larger(leftDownMapCorner) && currentPosition.smaller(rightUpMapCorner)) return vehicle;
+        }
         return null;
     }
 
     @Override
     public String toString(){
-        return visual.dump(this, this.leftDownMapCorner, this.rightUpMapCorner);
+        return this.visualise.dump(this, this.leftDownMapCorner, this.rightUpMapCorner);
     }
 }
