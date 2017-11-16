@@ -9,5 +9,6 @@ public class CarSystem {
             ford.move(i);
             System.out.println(ford.toString());
         }
+        ford.move(MoveDirection.Forward);
     }
 }
