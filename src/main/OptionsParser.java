@@ -30,8 +30,7 @@ public class OptionsParser {
                 case "left":
                     orders.add(MoveDirection.Left);
                     break;
-                default:
-                    throw new IllegalArgumentException(i + " is not legal move specification");
+                default:;
             }
         }
         MoveDirection[] result = new MoveDirection[orders.size()];
