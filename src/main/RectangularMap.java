@@ -32,7 +32,7 @@ public class RectangularMap implements IWorldMap{
 
     @Override
     public boolean isOccupied(Position position) {
-        return false;
+        return true;
     }
 
     @Override
