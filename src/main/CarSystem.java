@@ -19,6 +19,5 @@ public class CarSystem {
             System.err.println(ex.getMessage());
             System.exit(1);
         }
-        ford.move(MoveDirection.Forward);
     }
 }
