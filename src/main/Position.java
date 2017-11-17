@@ -35,6 +35,9 @@ public class Position {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int hash = 1;
+        hash = hash * 17 + this.x;
+        hash = hash * 31 + this.y;
+        return hash;
     }
 }

@@ -6,6 +6,9 @@ public class UnboundedMap extends AbstractWorldMap implements IWorldMap {
     public UnboundedMap(ArrayList<HayStack> stacks){
         super();
         this.stacks = stacks;
+        for(HayStack stack : stacks){
+            elements.put(stack.getPosition(), stack);
+        }
     }
 
     @Override
@@ -15,13 +18,7 @@ public class UnboundedMap extends AbstractWorldMap implements IWorldMap {
 
     @Override
     public Object objectAt(Position position) {
-        for(Car vehicle : cars){
-            if(position.equals(vehicle.getPosition())) return vehicle;
-        }
-        for(HayStack stack : stacks){
-            if (position.equals(stack.getPosition())) return stack;
-        }
-        return null;
+        return elements.get(position);
     }
 
     @Override
@@ -29,16 +26,9 @@ public class UnboundedMap extends AbstractWorldMap implements IWorldMap {
         int leftDownX = Integer.MAX_VALUE;
         int leftDownY = Integer.MAX_VALUE;
         int rightUpX = Integer.MIN_VALUE;
-        int rightUpY = Integer.MIN_VALUE;;
-        for(Car vehicle : cars){
-            Position currentPosition = vehicle.getPosition();
-            if (currentPosition.x > rightUpX) rightUpX = currentPosition.x;
-            if (currentPosition.y > rightUpY) rightUpY = currentPosition.y;
-            if (currentPosition.x < leftDownX) leftDownX = currentPosition.x;
-            if (currentPosition.y < leftDownY) leftDownY = currentPosition.y;
-        }
-        for(HayStack stack : stacks){
-            Position currentPosition = stack.getPosition();
+        int rightUpY = Integer.MIN_VALUE;
+        for(IMapElement element : elements.values()){
+            Position currentPosition = element.getPosition();
             if (currentPosition.x > rightUpX) rightUpX = currentPosition.x;
             if (currentPosition.y > rightUpY) rightUpY = currentPosition.y;
             if (currentPosition.x < leftDownX) leftDownX = currentPosition.x;

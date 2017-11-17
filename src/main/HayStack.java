@@ -1,4 +1,4 @@
-public class HayStack {
+public class HayStack implements IMapElement {
     private Position coords;
     public HayStack(Position coords){
         this.coords = coords;

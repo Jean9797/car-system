@@ -1,4 +1,4 @@
-public class Car {
+public class Car implements IMapElement {
     private IWorldMap map;
     private MapDirection currentDirection;
     private Position currentPosition;

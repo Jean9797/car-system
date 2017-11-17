@@ -15,10 +15,7 @@ public class RectangularMap extends AbstractWorldMap implements IWorldMap{
 
     @Override
     public Object objectAt(Position position) {
-        for(Car vehicle : cars ){
-            Position currentPosition = vehicle.getPosition();
-            if(currentPosition.equals(position) && currentPosition.larger(leftDownMapCorner) && currentPosition.smaller(rightUpMapCorner)) return vehicle;
-        }
+        if(elements.containsKey(position)) return elements.get(position);
         return null;
     }
 

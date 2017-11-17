@@ -65,6 +65,7 @@ public class UnboundedMapTest {
                 MoveDirection.Right, MoveDirection.Right, MoveDirection.Right, MoveDirection.Right, MoveDirection.Right, MoveDirection.Backward};
 
         map.run(directions);
+        System.out.println(map.toString());
         assertTrue(map.isOccupied(new Position(-1,0)));
         assertTrue(map.isOccupied(new Position(1,2)));
         assertTrue(map.isOccupied(new Position(2,2)));
