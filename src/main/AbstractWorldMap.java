@@ -26,7 +26,7 @@ abstract public class AbstractWorldMap implements IWorldMap {
             Car currentCar = cars.get(i%cars.size());
             Position currentPosition = currentCar.getPosition();
             currentCar.move(directions[i]);        //iterujemy po tablicy directions oraz jednocześnie po tablicy cars
-            if(currentPosition.equals(currentCar.getPosition())) return;
+            if(currentPosition.equals(currentCar.getPosition())) continue;
             elements.remove(currentPosition);
             elements.put(currentCar.getPosition(), currentCar);
         }
