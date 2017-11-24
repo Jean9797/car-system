@@ -1,4 +1,4 @@
-public class RectangularMap extends AbstractWorldMap implements IWorldMap{
+public class RectangularMap extends AbstractWorldMap{
     private Position leftDownMapCorner;
     private Position rightUpMapCorner;
 
@@ -15,8 +15,7 @@ public class RectangularMap extends AbstractWorldMap implements IWorldMap{
 
     @Override
     public Object objectAt(Position position) {
-        if(elements.containsKey(position)) return elements.get(position);
-        return null;
+        return elements.get(position);
     }
 
     @Override

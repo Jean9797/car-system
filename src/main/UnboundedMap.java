@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class UnboundedMap extends AbstractWorldMap implements IWorldMap {
+public class UnboundedMap extends AbstractWorldMap{
     private ArrayList<HayStack> stacks;
 
     public UnboundedMap(ArrayList<HayStack> stacks){
@@ -34,6 +34,7 @@ public class UnboundedMap extends AbstractWorldMap implements IWorldMap {
             if (currentPosition.x < leftDownX) leftDownX = currentPosition.x;
             if (currentPosition.y < leftDownY) leftDownY = currentPosition.y;
         }
+
         return this.visualise.dump(this, new Position(leftDownX,leftDownY), new Position(rightUpX, rightUpY));
     }
 }

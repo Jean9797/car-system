@@ -1,8 +1,10 @@
+import java.util.LinkedList;
+
 public class Car implements IMapElement {
     private IWorldMap map;
     private MapDirection currentDirection;
     private Position currentPosition;
-
+    private LinkedList<IPositionChangeObserver> observers = new LinkedList<>();
 
     public Car(IWorldMap map){
         this.currentDirection = MapDirection.North;
@@ -14,6 +16,20 @@ public class Car implements IMapElement {
         this.currentDirection = MapDirection.North;
         this.map = map;
         this.currentPosition = new Position(x, y);
+    }
+
+    public void addObserver(IPositionChangeObserver observer){
+        observers.add(observer);
+    }
+
+    public void removeObserver(IPositionChangeObserver observer){
+        observers.remove(observer);
+    }
+
+    private void positionChanged(Position oldPosition, Position newPosition){
+        for(IPositionChangeObserver observer : observers){
+            observer.positionChanged(oldPosition, newPosition);
+        }
     }
 
     @Override
@@ -55,6 +71,7 @@ public class Car implements IMapElement {
                         break;
                 }
                 if(map.canMoveTo(moveOnPosition)){
+                    positionChanged(this.currentPosition, moveOnPosition);
                     this.currentPosition = moveOnPosition;
                 }
                 break;
@@ -74,6 +91,7 @@ public class Car implements IMapElement {
                         break;
                 }
                 if(map.canMoveTo(moveOnPosition)){
+                    positionChanged(this.currentPosition, moveOnPosition);
                     this.currentPosition = moveOnPosition;
                 }
                 break;
